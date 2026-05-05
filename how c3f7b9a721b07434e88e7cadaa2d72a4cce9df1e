@@ -1,0 +1,47 @@
+[33mcommit d6c50f81742168b7d15321baf4b11b15b0690cd0[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmaster[m[33m)[m
+Author: Arteemyev Mikhail <artemevmik1@tambler>
+Date:   Wed Apr 29 22:09:21 2026 +0500
+
+    hot fixes
+
+[33mcommit d24060f69a4471aa1abe4c96e7ba184a2b12d6ed[m
+Author: Arteemyev Mikhail <artemevmik1@tambler>
+Date:   Wed Apr 29 09:21:35 2026 +0500
+
+    update gitignore
+
+[33mcommit c3f7b9a721b07434e88e7cadaa2d72a4cce9df1e[m
+Author: Arteemyev Mikhail <artemevmik1@tambler>
+Date:   Wed Apr 29 09:08:45 2026 +0500
+
+    remove .idea
+
+[33mcommit b5b36b9b83c479478bd4e0f7fa7607134cac7126[m
+Author: Arteemyev Mikhail <artemevmik1@tambler>
+Date:   Wed Apr 29 08:56:47 2026 +0500
+
+    .gitignore
+
+[33mcommit 642f15f7c260d69fa94db034cb39475809fcd928[m
+Author: Arteemyev Mikhail <artemevmik1@tambler>
+Date:   Wed Apr 29 08:54:22 2026 +0500
+
+    .gitignore
+
+[33mcommit e3e6084ccd5db85c068b977d3ef6a4dee52c0d27[m
+Author: Arteemyev Mikhail <artemevmik1@tambler>
+Date:   Wed Apr 29 08:49:57 2026 +0500
+
+    lost files
+
+[33mcommit d5974827578909b9174d6f13f71b15392f013da4[m
+Author: Arteemyev Mikhail <artemevmik1@tambler>
+Date:   Tue Apr 28 08:58:27 2026 +0500
+
+    fixes
+
+[33mcommit 430a5d5ecc7c451ab226e840d0ca69ef42bdabc1[m
+Author: Arteemyev Mikhail <artemevmik1@tambler>
+Date:   Tue Apr 28 08:46:53 2026 +0500
+
+    add file1.py
