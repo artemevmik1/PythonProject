@@ -8,6 +8,6 @@ def mask_account_card(number:str) -> str:
     else:
         mask = get_mask_account(number_split[-1])
 
-    number_mask = ' '.join(number_split[0:-1]) + ' ' + mask
+    number_mask = ' '.join(number_split[0:-1]) + ' ' +  mask
 
     return number_mask
