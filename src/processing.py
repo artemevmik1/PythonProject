@@ -1,8 +1,7 @@
-from typing import List, Dict, Any, Optional
+from typing import Any, Dict, List, Optional
 
 
-def filter_by_state(data: List[Dict[str, Any]], state: Optional[str] = 'EXECUTED') -> List[Dict[str, Any]]:
-
+def filter_by_state(data: List[Dict[str, Any]], state: Optional[str] = "EXECUTED") -> List[Dict[str, Any]]:
     """
     Фильтрует список словарей по значению ключа 'state'.
     Args:
@@ -15,12 +14,10 @@ def filter_by_state(data: List[Dict[str, Any]], state: Optional[str] = 'EXECUTED
     """
     result = []
     for item in data:
-        if item.get('state') == state:
+        if item.get("state") == state:
             result.append(item)
     return result
 
 
-
-
-def sort_by_date (list_of_dictionaries: list, sort: bool=True) -> list:
-    return sorted(list_of_dictionaries, key=lambda d: d['date'], reverse=sort)
+def sort_by_date(list_of_dictionaries: list, sort: bool = True) -> list:
+    return sorted(list_of_dictionaries, key=lambda d: d["date"], reverse=sort)
