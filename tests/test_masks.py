@@ -1,6 +1,6 @@
 import pytest
 from src.masks import get_mask_account, get_mask_card_number
-
+from src.widget import mask_account_card
 
 @pytest.mark.parametrize("card, expected", [
     ('8990922113665229', '8990 92** **** 5229'),
@@ -20,4 +20,4 @@ def test_valid_card(number):
 def test_number_zero(number):
     """Тест на пустой номер карты"""
     with pytest.raises(ValueError):
-        get_mask_card_number(None)
+        mask_account_card(None)

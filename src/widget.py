@@ -5,7 +5,12 @@ from src.masks import get_mask_account, get_mask_card_number
 
 def mask_account_card(number: str) -> str:
     """Функция проверяет данные являются номером карты или номером счета"""
+
+    if number is None:
+        raise ValueError("номер карты не может быть None")
+
     number_split = number.split(" ")
+
     if len(number_split[-1]) == 16:
         mask = get_mask_card_number(number_split[-1])
     else:
