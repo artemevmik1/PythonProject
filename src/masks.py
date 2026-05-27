@@ -1,3 +1,5 @@
+
+
 def get_mask_card_number(card_number: str) -> str:
     """
     Функция проверяет размер номера карты на корректность
