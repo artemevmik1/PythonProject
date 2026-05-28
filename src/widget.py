@@ -9,7 +9,27 @@ def mask_account_card(number: str) -> str:
     if number is None:
         raise ValueError("номер карты не может быть None")
 
+    if isinstance(number, int):
+        raise ValueError(f"Номер должен состоять только из цифр")
+
     number_split = number.split(" ")
+
+    if not number_split[-1].isdigit():
+        raise ValueError(f"Номер должен состоять только из цифр")
+
+
+    if not isinstance(number_split[-1], str):
+        raise TypeError(f"Ожидается строка")
+
+    parts = number_split[-1].strip().split(' ')
+
+    if not parts:
+        raise ValueError("некорректный формат строки")
+
+
+    if len(number_split[-1]) != 16 and len(number_split[-1]) != 20:
+        raise ValueError("Не является номером карты или счета")
+
 
     if len(number_split[-1]) == 16:
         mask = get_mask_card_number(number_split[-1])
