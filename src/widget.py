@@ -62,6 +62,15 @@ def get_datee(date_string: str) -> str:
     """
     Преобразует дату из формата ISO в формат ДД.ММ.ГГГГ.
     """
+    if date_string is None:
+        raise ValueError("Некорректный формат даты: None")
+
+    if not isinstance(date_string, str):
+        raise TypeError(f"Ожидается строка, получен")
+
+    if not date_string.strip():
+        raise ValueError("Некорректный формат даты: пустая строка")
+
     try:
         # Парсим входную строку в объект datetime
         dt = datetime.fromisoformat(date_string)
@@ -69,4 +78,4 @@ def get_datee(date_string: str) -> str:
         # Преобразуем в нужный формат
         return dt.strftime("%d.%m.%Y")
     except ValueError as e:
-        raise ValueError(f"Некорректный формат даты: {date_string}") from e
+        raise ValueError(f"Некорректный формат даты: {date_string}")

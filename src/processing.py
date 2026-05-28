@@ -12,6 +12,12 @@ def filter_by_state(data: List[Dict[str, Any]], state: Optional[str] = "EXECUTED
     список
     словарей
     """
+
+    # Проверка типа входных данных
+    if not isinstance(data, list):
+        raise TypeError(f"Ожидается список, получен")
+
+
     result = []
     for item in data:
         if item.get("state") == state:
