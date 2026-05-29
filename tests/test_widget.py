@@ -2,7 +2,9 @@ import pytest
 from src.widget import mask_account_card, get_datee
 
 
-@pytest.mark.parametrize("input_data, expected", [
+@pytest.mark.parametrize(
+    "input_data, expected",
+    [
         # Тесты для карт (16 цифр)
         ("Visa Platinum 7000792289606361", "Visa Platinum 7000 79** **** 6361"),
         ("Maestro 1596837868705199", "Maestro 1596 83** **** 5199"),
@@ -10,69 +12,82 @@ from src.widget import mask_account_card, get_datee
         ("Visa 1234567890123456", "Visa 1234 56** **** 3456"),
         ("МИР 1234567890123456", "МИР 1234 56** **** 3456"),
         ("Карта 1111222233334444", "Карта 1111 22** **** 4444"),
-
         # Тесты для счетов
         ("Счет 73654108430135874305", "Счет **4305"),
         ("Счет 12345678901234567890", "Счет **7890"),
         ("Счет 11111111111111111111", "Счет **1111"),
         ("Расчетный счет 98765432109876543210", "Расчетный счет **3210"),
-
         # Тесты без названия
         ("7000792289606361", " 7000 79** **** 6361"),
-        ("73654108430135874305", " **4305")])
+        ("73654108430135874305", " **4305"),
+    ],
+)
 def test_mask_account_card(input_data, expected):
-        """проверка, что функция корректно распознает и применяет нужный тип маскировки в зависимости от типа входных данных (карта или счет).."""
-        assert mask_account_card(input_data) == expected
-
+    """проверка, что функция корректно распознает и применяет нужный тип маскировки в зависимости от типа входных данных (карта или счет).."""
+    assert mask_account_card(input_data) == expected
 
 
 def test_mask_account_card_empty():
-        """Тест: пустая строка"""
-        with pytest.raises(ValueError):
-                mask_account_card("")
+    """Тест: пустая строка"""
+    with pytest.raises(ValueError):
+        mask_account_card("")
 
 
-@pytest.mark.parametrize("card_valid", ['Счет 646864  7367 8894779589', 'Счет 646864736788fged9589', 'Счет 646864736734889477', ' ', 121232431, 'sdfadgergWE'])
+@pytest.mark.parametrize(
+    "card_valid",
+    [
+        "Счет 646864  7367 8894779589",
+        "Счет 646864736788fged9589",
+        "Счет 646864736734889477",
+        " ",
+        121232431,
+        "sdfadgergWE",
+    ],
+)
 def test_mask_account_card_invalid(card_valid):
     """Тестирование функции на обработку некорректных входных данных и
-     проверка ее устойчивости к ошибкам."""
+    проверка ее устойчивости к ошибкам."""
     with pytest.raises(ValueError):
-         mask_account_card(card_valid)
+        mask_account_card(card_valid)
 
 
-@pytest.mark.parametrize("input_date,expected", [
+@pytest.mark.parametrize(
+    "input_date,expected",
+    [
         # Полный ISO формат с микросекундами
         ("2024-03-11T02:26:18.671407", "11.03.2024"),
         ("2025-12-25T15:30:45.123456", "25.12.2025"),
         ("2024-01-01T00:00:00.000000", "01.01.2024"),
-
         # ISO формат без микросекунд
         ("2024-03-11T02:26:18", "11.03.2024"),
         ("2024-07-20T10:00:00", "20.07.2024"),
-
         # Только дата (без времени)
         ("2024-03-11", "11.03.2024"),
         ("2025-12-25", "25.12.2025"),
-
         # С разными разделителями времени
         ("2024-03-11T02:26:18.671", "11.03.2024"),
         ("2024-03-11 02:26:18", "11.03.2024"),  # пробел вместо T
-])
+    ],
+)
 def test_valid_dates(input_date, expected):
-        """Тест корректных форматов дат"""
-        assert get_datee(input_date) == expected
+    """Тест корректных форматов дат"""
+    assert get_datee(input_date) == expected
 
 
 def test_leap_year():
-        """Тест високосного года (29 февраля)"""
-        assert get_datee("2024-02-29T12:00:00") == "29.02.2024"
+    """Тест високосного года (29 февраля)"""
+    assert get_datee("2024-02-29T12:00:00") == "29.02.2024"
+
 
 def test_different_time_formats():
-        """Тест разных форматов времени"""
-        assert get_datee("2024-03-11T02:26:18") == "11.03.2024"
+    """Тест разных форматов времени"""
+    assert get_datee("2024-03-11T02:26:18") == "11.03.2024"
 
 
-@pytest.mark.parametrize("invalid_date", [None,  # None вместо строки
+@pytest.mark.parametrize(
+    "invalid_date",
+    [
+        None,  # None вместо строки
         "",  # Пустая строка
         "   ",  # Пробелы
         "not a date",  # Не дата
@@ -91,14 +106,15 @@ def test_different_time_formats():
         "2024-abc-11T02:26:18",  # Буквы в месяце
         "2024-03-abcT02:26:18",  # Буквы в дне
         "99999-03-11T02:26:18",  # Слишком длинный год
-])
+    ],
+)
 def test_invalid_dates(invalid_date):
-        """Тест некорректных дат (должны вызывать ValueError)"""
-        with pytest.raises(ValueError):
-                get_datee(invalid_date)
+    """Тест некорректных дат (должны вызывать ValueError)"""
+    with pytest.raises(ValueError):
+        get_datee(invalid_date)
 
 
 def test_empty_date_string():
-        """Тест: пустая строка"""
-        with pytest.raises(ValueError):
-                get_datee("")
+    """Тест: пустая строка"""
+    with pytest.raises(ValueError):
+        get_datee("")

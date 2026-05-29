@@ -10,26 +10,23 @@ def mask_account_card(number: str) -> str:
         raise ValueError("номер карты не может быть None")
 
     if isinstance(number, int):
-        raise ValueError(f"Номер должен состоять только из цифр")
+        raise ValueError("Номер должен состоять только из цифр")
 
     number_split = number.split(" ")
 
     if not number_split[-1].isdigit():
-        raise ValueError(f"Номер должен состоять только из цифр")
-
+        raise ValueError("Номер должен состоять только из цифр")
 
     if not isinstance(number_split[-1], str):
-        raise TypeError(f"Ожидается строка")
+        raise TypeError("Ожидается строка")
 
-    parts = number_split[-1].strip().split(' ')
+    parts = number_split[-1].strip().split(" ")
 
     if not parts:
         raise ValueError("некорректный формат строки")
 
-
     if len(number_split[-1]) != 16 and len(number_split[-1]) != 20:
         raise ValueError("Не является номером карты или счета")
-
 
     if len(number_split[-1]) == 16:
         mask = get_mask_card_number(number_split[-1])
@@ -54,8 +51,8 @@ def get_date(date_string: str) -> str:
 
         # Возвращаем в формате ДД.ММ.ГГГГ
         return f"{day}.{month}.{year}"
-    except (IndexError, ValueError) as e:
-        raise ValueError(f"Некорректный формат даты: {date_string}") from e
+    except (IndexError, ValueError):
+        raise ValueError("Некорректный формат даты: {date_string}")
 
 
 def get_datee(date_string: str) -> str:
@@ -66,7 +63,7 @@ def get_datee(date_string: str) -> str:
         raise ValueError("Некорректный формат даты: None")
 
     if not isinstance(date_string, str):
-        raise TypeError(f"Ожидается строка, получен")
+        raise TypeError("Ожидается строка, получен")
 
     if not date_string.strip():
         raise ValueError("Некорректный формат даты: пустая строка")
@@ -77,5 +74,5 @@ def get_datee(date_string: str) -> str:
 
         # Преобразуем в нужный формат
         return dt.strftime("%d.%m.%Y")
-    except ValueError as e:
-        raise ValueError(f"Некорректный формат даты: {date_string}")
+    except ValueError:
+        raise ValueError("Некорректный формат даты: {date_string}")
